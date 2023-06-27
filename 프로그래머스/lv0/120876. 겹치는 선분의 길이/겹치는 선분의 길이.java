@@ -1,24 +1,26 @@
+import java.util.Map;
+import java.util.HashMap;
+
 class Solution {
     public int solution(int[][] lines) {
         int answer = 0;
-        
-        int[] arr = new int[200];
-        
-        for (int[] line : lines){
-            int start = line[0] + 100;
-            int end = line[1] + 100;
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int[] arr : lines){
+            int start = arr[0];
+            int end = arr[1];
+
             for (int i = start; i < end; i++){
-                arr[i] += 1;
+                map.put(i, map.getOrDefault(i, 0) + 1);
             }
-            // 0 = 1, 2, 3, 4 = 1++
-            // 3,4,5,6,7,8 = 1++
-            // 3 > 1, 4 > 1, answer = 2
         }
-        
-        for (int x : arr){
-            if(x > 1) answer++;
+
+        for (Integer x : map.keySet()) {
+            if (map.get(x) > 1){
+                answer++;
+            }
         }
-        
+
         return answer;
     }
 }
