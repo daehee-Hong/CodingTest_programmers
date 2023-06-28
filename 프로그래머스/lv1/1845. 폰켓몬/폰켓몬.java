@@ -11,10 +11,6 @@ class Solution {
             map.put(n, map.getOrDefault(n, 0) + 1);
         }
         
-        for (int i : map.keySet()) answer++;
-        
-        if (answer > len) answer = len;
-        
-        return answer;
+        return map.size() > len ? len : map.size();
     }
 }
